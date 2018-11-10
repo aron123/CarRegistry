@@ -33,9 +33,43 @@ function loadBrowseManufacturers () {
 }
 
 /**
- * 
+ * Add manufacturer
  */
 
+function processResponse (statusCode) {
+    let statusBar = $('#status-msg');
+    statusBar.removeClass('fail-msg');
+    statusBar.removeClass('success-msg');
+
+    if (statusCode == 409) {
+        statusBar.addClass('fail-msg').show();
+        statusBar.text('Failed to add manufacturer');
+    } else if (statusCode == 200) {
+        statusBar.addClass('success-msg').show();
+        statusBar.text('Success');
+    }
+}
+
+function addManufacturer () {
+    let form = $('#add-manufacturer-form');
+
+    $.ajax('/addManufacturers', {
+        type: 'POST',
+        data: {
+            name: form.find('#name').val(), 
+            country: form.find('#country').val(), 
+            founded: form.find('#founded').val()
+        },
+        statusCode: {
+            200: () => processResponse(200),
+            409: () => processResponse(409)
+        }
+    });
+}
+
+function loadAddManufacturerForm() {
+    $('#content').load('addManufacturerForm.html');
+}
 
 /**
  * Page initialization

@@ -51,6 +51,26 @@ body {
     vertical-align: middle;
 }
 
+#content .centered-td {
+    text-align: center;
+}
+
+#content .form-table, #content .form-table td, #content .form-table th {
+    border: 0;
+}
+
+#content .success-msg {
+    background: green;
+    color: whitesmoke;
+    text-align: center;
+}
+
+#content .fail-msg {
+    background: red;
+    color: whitesmoke;
+    text-align: center;
+}
+
 
 /*
     Footer style

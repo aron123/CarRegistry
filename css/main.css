@@ -1,7 +1,12 @@
 body {
     margin: 0;
     font-family: "Segoe UI";
+    background-color: #f3fff2;
 }
+
+/*
+    Menubar style
+*/
 
 #menubar {
     background-color: #29992d;
@@ -20,13 +25,36 @@ body {
     display: inline;
     list-style:none;
     margin-right: 25px;
+    cursor: pointer;
 }
+
+/*
+    General style definitions for content section
+*/
 
 #content {
     padding: 20px 20px 20px 20px;
     margin: 10px 10px 10px 10px;
     min-height: 75vh;
 }
+
+#content table {
+    margin: auto;
+}
+
+#content table, th, td {
+    border: 1px solid green;
+}
+
+#content td, th {
+    padding: 5px;
+    vertical-align: middle;
+}
+
+
+/*
+    Footer style
+*/
 
 #footer {
     text-align: center;

@@ -35,22 +35,24 @@ function loadBrowseManufacturers () {
  * Add manufacturer
  */
 
-function processResponse (statusCode) {
+function processResponse (statusCode, successMsg, failMsg) {
     let statusBar = $('#status-msg');
     statusBar.removeClass('fail-msg');
     statusBar.removeClass('success-msg');
 
     if (statusCode == 409) {
         statusBar.addClass('fail-msg').show();
-        statusBar.text('Failed to add manufacturer');
+        statusBar.text(failMsg);
     } else if (statusCode == 200) {
         statusBar.addClass('success-msg').show();
-        statusBar.text('Success');
+        statusBar.text(successMsg);
     }
 }
 
 function addManufacturer () {
     let form = $('#add-manufacturer-form');
+    let successMsg = "Success";
+    let failMsg = "Failed to add manufacturer";
 
     $.ajax('/addManufacturers', {
         type: 'POST',
@@ -60,8 +62,8 @@ function addManufacturer () {
             founded: form.find('#founded').val()
         },
         statusCode: {
-            200: () => processResponse(200),
-            409: () => processResponse(409)
+            200: () => processResponse(200, successMsg, failMsg),
+            409: () => processResponse(409, successMsg, failMsg)
         }
     });
 }
@@ -129,6 +131,37 @@ function loadCarsOfManufacturer () {
 
     document.cookie = `name=${manufacturer}`;
     $.get('/manufacturer', fillCarsTable);
+}
+
+/**
+ * Add car
+ */
+
+function loadAddCar () {
+    $('#content').load('addCarForm.html', loadAllManufacturersNames);
+}
+
+function addCar () {
+    let form = $('#add-car-form');
+    let successMsg = "Success";
+    let failMsg = "Failed to add car";
+
+    $.ajax('/addCar', {
+        type: 'POST',
+        data: {
+            name: form.find('#name').val(),
+            consumption: `${form.find('#consumption').val()} l/100km`,
+            color: form.find('#color').val(),
+            manufacturer: form.find('#manufacturer-picker :selected').val(),
+            year: form.find('#year').val(),
+            available: form.find('#available').val(),
+            horsepower: form.find('#horsepower').val()
+        },
+        statusCode: {
+            200: () => processResponse(200, successMsg, failMsg),
+            409: () => processResponse(409, successMsg, failMsg)
+        }
+    })
 }
 
 /**

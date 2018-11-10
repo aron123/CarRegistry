@@ -1,0 +1,46 @@
+<div id="add-car">
+    <form id="add-car-form">
+        <table class="form-table">
+            <tr>
+                <td colspan="2" id="status-msg" hidden></td>
+            </tr>
+            <tr>
+                <td><label for="name">Car's name:</label></td>
+                <td><input type="text" id="name"></td>
+            </tr>
+            <tr>
+                <td><label for="consumption">Consumption: </label></td>
+                <td><input type="number" id="consumption"> l / 100 km</td>
+            </tr>
+            <tr>
+                <td><label for="color">Color:</label></td>
+                <td><input type="text" id="color"></td>
+            </tr>
+            <tr>
+                <td><label for="manufacturer">Manufacturer:</label></td>
+                <td>
+                    <select id="manufacturer-picker">
+                        <!-- manufacturers are going to be loaded here... -->
+                    </select>
+                </td>  
+            </tr>
+            <tr>
+                <td><label for="year">Year:</label></td>
+                <td><input type="number" id="year"></td>
+            </tr>
+            <tr>
+                <td><label for="available"># available:</label></td>
+                <td><input type="number" id="available"></td>
+            </tr>
+            <tr>
+                <td><label for="horsepower">Horsepower</label></td>
+                <td><input type="number" id="horsepower"></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="centered-td">
+                    <input type="button" onclick="addCar()" value="Mehet">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

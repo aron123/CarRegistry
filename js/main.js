@@ -28,8 +28,7 @@ function loadManufacturersData () {
 }
 
 function loadBrowseManufacturers () {
-    $('#content').load('browseManufacturers.html');
-    loadManufacturersData();
+    $('#content').load('browseManufacturers.html',loadManufacturersData);
 }
 
 /**
@@ -69,6 +68,67 @@ function addManufacturer () {
 
 function loadAddManufacturerForm() {
     $('#content').load('addManufacturerForm.html');
+}
+
+
+/**
+ * Browse cars
+ */
+function fillCarsTable (data, status) {
+    if (status != 'success') {
+        return;
+    }
+
+    $('#cars-table tbody').empty();
+
+    for (let i in data) {
+        $('#cars-table tbody').append(
+            `<tr>
+                <td>${data[i].name}</td>
+                <td>${data[i].consumption}</td>
+                <td>${data[i].color}</td>
+                <td>${data[i].manufacturer}</td>
+                <td>${data[i].year}</td>
+                <td>${data[i].available}</td>
+                <td>${data[i].horsepower}</td>
+            </tr>`
+        );
+    }
+}
+
+function loadAllCars () {
+    $.get('/cars', fillCarsTable);
+}
+
+function fillManufacturersPicker (data, status) {
+    if (status != 'success') {
+        return;
+    }
+
+    let picker = $('#manufacturer-picker');
+
+    for (let i in data) {
+        picker.append(`<option value="${data[i]}">${data[i]}</option>`);
+    }
+}
+
+function loadAllManufacturersNames () {
+    $.get('/manufacturerNames', fillManufacturersPicker);
+}
+
+function loadBrowseCars () {
+    $('#content').load('browseCars.html', () => {loadAllCars(); loadAllManufacturersNames();});
+}
+
+function loadCarsOfManufacturer () {
+    let manufacturer = $('#manufacturer-picker :selected').val();
+
+    if (manufacturer == "all") {
+        return loadAllCars();
+    }
+
+    document.cookie = `name=${manufacturer}`;
+    $.get('/manufacturer', fillCarsTable);
 }
 
 /**

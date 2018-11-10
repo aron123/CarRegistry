@@ -1,8 +1,11 @@
 <div id="browse-cars">
-    <select id="manufacturer-picker" onchange="loadCarsOfManufacturer()">
-        <option value="all">All manufacturer</option>
-        <!-- manufacturers are going to be loaded here... -->
-    </select>
+    <div class="centered-content bottom-margin">
+        <span>Manufacturer: </span>
+        <select id="manufacturer-picker" class="centered-picker" onchange="loadCarsOfManufacturer()">
+            <option value="all">All manufacturer</option>
+            <!-- manufacturers are going to be loaded here... -->
+        </select>
+    </div>
     <table id="cars-table">
         <thead>
             <tr>

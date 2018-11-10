@@ -71,6 +71,14 @@ body {
     text-align: center;
 }
 
+#content .centered-content {
+    text-align: center;
+}
+
+#content .bottom-margin {
+    margin-bottom: 10px;
+}
+
 
 /*
     Footer style

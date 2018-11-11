@@ -19,6 +19,7 @@ body {
 
 #menubar .brand {
     padding-left: 10px;
+    vertical-align: middle;
 }
 
 #menubar ul  li {
@@ -33,9 +34,14 @@ body {
 */
 
 #content {
-    padding: 20px 20px 20px 20px;
-    margin: 10px 10px 10px 10px;
+    padding: 20px;
+    margin: 10px;
     min-height: 75vh;
+}
+
+#content .welcome-msg {
+    font-weight: bold;
+    text-align: center;
 }
 
 #content table {
@@ -49,10 +55,6 @@ body {
 #content td, th {
     padding: 5px;
     vertical-align: middle;
-}
-
-#content .centered-td {
-    text-align: center;
 }
 
 #content .form-table, #content .form-table td, #content .form-table th {

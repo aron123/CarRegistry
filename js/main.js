@@ -1,8 +1,3 @@
-function init () {
-    $('#menubar').load('menuBar.html');
-    $('#footer').load('footer.html');
-}
-
 /**
  * Browse manufacturers
  */
@@ -167,6 +162,12 @@ function addCar () {
 /**
  * Page initialization
  */
+
+ function init () {
+    $('#menubar').load('menuBar.html');
+    $('#footer').load('footer.html');
+}
+
 function main () {
     $(document).ready(init);
 }

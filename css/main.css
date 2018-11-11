@@ -81,6 +81,18 @@ body {
     margin-bottom: 10px;
 }
 
+#content .form-btn {
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-radius: 12px;
+    color: whitesmoke;
+    background-color: #29992d;
+    border: none;
+    cursor: pointer;
+}
+
 
 /*
     Footer style

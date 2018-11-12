@@ -1,4 +1,35 @@
 /**
+ * Cross-page functions
+ */
+
+function fillManufacturersPicker (data, status) {
+    if (status != 'success') {
+        return;
+    }
+
+    let picker = $('#manufacturer-picker');
+
+    for (let i in data) {
+        picker.append(`<option value="${data[i]}">${data[i]}</option>`);
+    }
+}
+
+function processResponse (statusCode, successMsg, failMsg) {
+    let statusBar = $('#status-msg');
+    statusBar.removeClass('fail-msg');
+    statusBar.removeClass('success-msg');
+
+    if (statusCode == 409) {
+        statusBar.addClass('fail-msg').show();
+        statusBar.text(failMsg);
+    } else if (statusCode == 200) {
+        statusBar.addClass('success-msg').show();
+        statusBar.text(successMsg);
+    }
+}
+
+
+/**
  * Browse manufacturers
  */
 
@@ -30,20 +61,6 @@ function loadBrowseManufacturers () {
  * Add manufacturer
  */
 
-function processResponse (statusCode, successMsg, failMsg) {
-    let statusBar = $('#status-msg');
-    statusBar.removeClass('fail-msg');
-    statusBar.removeClass('success-msg');
-
-    if (statusCode == 409) {
-        statusBar.addClass('fail-msg').show();
-        statusBar.text(failMsg);
-    } else if (statusCode == 200) {
-        statusBar.addClass('success-msg').show();
-        statusBar.text(successMsg);
-    }
-}
-
 function addManufacturer () {
     let form = $('#add-manufacturer-form');
     let successMsg = "Success";
@@ -71,6 +88,7 @@ function loadAddManufacturerForm() {
 /**
  * Browse cars
  */
+
 function fillCarsTable (data, status) {
     if (status != 'success') {
         return;
@@ -95,18 +113,6 @@ function fillCarsTable (data, status) {
 
 function loadAllCars () {
     $.get('/cars', fillCarsTable);
-}
-
-function fillManufacturersPicker (data, status) {
-    if (status != 'success') {
-        return;
-    }
-
-    let picker = $('#manufacturer-picker');
-
-    for (let i in data) {
-        picker.append(`<option value="${data[i]}">${data[i]}</option>`);
-    }
 }
 
 function loadAllManufacturersNames () {
@@ -160,11 +166,20 @@ function addCar () {
 }
 
 /**
+ * About page
+ */
+
+function loadAboutPage () {
+    $('#content').load('about.html');
+}
+
+/**
  * Page initialization
  */
 
  function init () {
     $('#menubar').load('menuBar.html');
+    $('#content').load('welcomeMessage.html');
     $('#footer').load('footer.html');
 }
 
